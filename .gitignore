@@ -1,0 +1,41 @@
+# Confidential shooting incident data - DO NOT COMMIT
+NYPD_Shooting_Incident_Data__Historic_.csv
+
+# Generated analysis outputs (can be regenerated)
+clustered_data_full.csv
+cluster_summary.csv
+*.png
+*.html
+
+# Python and Jupyter
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Environment
+venv/
+env/
+ENV/
+.env
