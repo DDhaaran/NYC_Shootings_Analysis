@@ -9,60 +9,64 @@ This is a comprehensive machine learning project analyzing **27,312 shooting inc
 ```
 NYC_Shootings_Analysis/
 ├── README.md (this file)
-├── NYC_Shootings_Cluster_Analysis.ipynb (Main Jupyter Notebook)
+├── NYC_Shootings_Cluster_Analysis.py (Main analysis script)
 ├── NYC_Shootings_Cluster_Analysis_Report.md (Comprehensive Final Report)
-├── Data files (will be generated when notebook is run):
-│   ├── clustered_data_full.csv (All incidents with cluster labels)
-│   ├── cluster_summary.csv (Cluster statistics)
-│   ├── 01_eda_overview.png (EDA visualizations)
-│   ├── 02_demographics.png (Demographic analysis)
-│   ├── 03_elbow_silhouette.png (Cluster optimization)
-│   ├── 04_cluster_analysis.png (Cluster characteristics)
-│   ├── 05_geographic_clusters.png (Geographic distribution)
-│   ├── 06_temporal_patterns.png (Temporal analysis)
-│   ├── cluster_map.html (Interactive cluster map)
-│   └── incident_heatmap.html (Interactive heatmap)
-└── Original Data (copied from your Downloads):
-    ├── NYPD_Shooting_Incident_Data__Historic_.csv
-    └── dictionary.txt
+├── NYPD_Shooting_Incident_Data__Historic_.csv (Data file - 27,312 incidents)
+├── .gitignore (Git configuration)
+├── venv/ (Python virtual environment)
+├── outputs/ (Generated visualizations and reports):
+│   ├── 01_elbow_silhouette.png (Cluster optimization analysis)
+│   ├── 02_geographic_distribution.png (Spatial cluster distribution)
+│   ├── 03_temporal_patterns.png (Temporal analysis by hour/day/month/year)
+│   ├── 04_borough_distribution.png (Borough-level breakdown)
+│   ├── 05_cluster_characteristics.png (Cluster profiles and statistics)
+│   ├── 06_interactive_map.html (Interactive Folium map with heatmap)
+│   └── ANALYSIS_SUMMARY.txt (Summary statistics and metrics)
+└── .git/ (Version control repository)
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn folium plotly scipy
+# Set up Python virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+# Or manually:
+# pip install pandas numpy scikit-learn matplotlib seaborn folium plotly scipy
 ```
 
 ### Running the Analysis
 
-1. **Open the Jupyter Notebook:**
+1. **Activate the virtual environment:**
    ```bash
-   jupyter notebook NYC_Shootings_Cluster_Analysis.ipynb
+   source venv/bin/activate
    ```
 
-2. **Run all cells sequentially** - The notebook is organized into 17 sections:
-   - Sections 1-3: Data loading and EDA
-   - Sections 4-5: Visualization and preprocessing
-   - Section 6: Feature engineering
-   - Sections 7-8: Encoding and scaling
-   - Sections 9-11: Clustering analysis
-   - Sections 12-14: Visualization and interpretation
-   - Sections 15-17: Recommendations and conclusion
+2. **Run the analysis script:**
+   ```bash
+   python3 NYC_Shootings_Cluster_Analysis.py
+   ```
 
-3. **Generated outputs** will be saved to the same directory
+3. **Generated outputs** will be saved to the `outputs/` directory:
+   - 6 PNG visualization files
+   - 1 Interactive HTML map
+   - 1 Summary statistics file
 
 ## 📊 Key Findings
 
 ### Cluster Summary
 
-| Cluster | Name | Size | Murder Rate | Peak Time | Primary Area |
-|---------|------|------|-------------|-----------|--------------|
-| 0 | High-Risk Evening | 28% | 42% | 7-11 PM | Brooklyn/Bronx |
-| 1 | Daytime Street | 22% | 35% | 10 AM-4 PM | Manhattan |
-| 2 | Late-Night High-Lethality | 18% | 55% | 12-4 AM | Public Housing |
-| 3 | Residential | 20% | 38% | Distributed | All Boroughs |
-| 4 | Weekend Peak | 12% | 45% | 8 PM-2 AM | Entertainment |
+| Cluster | Size | Murder Rate | Avg Hour | Primary Area |
+|---------|------|-------------|----------|--------------|
+| 0 | 25.5% (6,962) | 18.6% | 12:52 PM | Brooklyn |
+| 1 | 12.5% (3,405) | 19.4% | 11:24 AM | Queens |
+| 2 | 9.4% (2,553) | 20.6% | 12:12 PM | Brooklyn |
+| 3 | 19.1% (5,225) | 19.2% | 11:48 AM | Brooklyn |
+| 4 | 33.5% (9,157) | 19.5% | 12:18 PM | Bronx |
 
 ### Critical Statistics
 - **Total Incidents:** 27,312
@@ -98,14 +102,15 @@ pip install pandas numpy scikit-learn matplotlib seaborn folium plotly scipy
 
 ## 📋 Deliverables Checklist
 
-✅ **Jupyter Notebook** - Complete analysis pipeline with 17 sections  
+✅ **Python Analysis Script** - Complete data pipeline (NYC_Shootings_Cluster_Analysis.py)  
 ✅ **Final Report** - Comprehensive 12-section report with actionable recommendations  
-✅ **Data Preprocessing** - Quality validation and feature engineering (24 features)  
+✅ **Data File** - Full dataset with 27,312 incidents (NYPD_Shooting_Incident_Data__Historic_.csv)  
+✅ **Data Preprocessing** - Quality validation and feature engineering (14 features)  
 ✅ **Clustering Analysis** - 4 algorithms compared, K-Means selected  
-✅ **Visualization Suite** - 6 PNG charts + 2 interactive maps  
+✅ **Visualization Suite** - 6 PNG charts + 1 interactive map + summary statistics  
 ✅ **Cluster Summary** - Detailed characterization of each cluster  
-✅ **Recommendations** - Specific, evidence-based action items  
-✅ **Model Validation** - Silhouette Score 0.52, Davies-Bouldin 1.24  
+✅ **Model Validation** - Silhouette Score 0.1320, Davies-Bouldin 2.0168  
+✅ **Virtual Environment** - Reproducible runtime with all dependencies  
 
 ## 🔍 Data Information
 
@@ -134,18 +139,18 @@ pip install pandas numpy scikit-learn matplotlib seaborn folium plotly scipy
 
 ### Algorithm
 - **Selected:** K-Means Clustering
-- **Clusters:** 4-5 (optimal k determined via Silhouette analysis)
-- **Features:** 24 engineered features
+- **Clusters:** 5 (optimal k determined via Silhouette analysis)
+- **Features:** 14 engineered features
 - **Validation Metrics:**
-  - Silhouette Score: 0.52 (good clustering)
-  - Davies-Bouldin Index: 1.24 (lower is better)
-  - Calinski-Harabasz Index: 8,450 (higher is better)
+   - Silhouette Score: 0.1320 (reasonable clustering)
+   - Davies-Bouldin Index: 2.0168 (lower is better)
+   - Calinski-Harabasz Index: 2,894.3 (higher is better)
 
 ### Compared Algorithms
-1. K-Means ✓ SELECTED (Silhouette: 0.52)
-2. Gaussian Mixture Model (Silhouette: 0.48)
-3. Hierarchical Clustering (Silhouette: 0.45)
-4. DBSCAN (Silhouette: 0.38)
+1. K-Means ✓ SELECTED (Silhouette: 0.1461)
+2. Gaussian Mixture Model (Silhouette: 0.1386)
+3. Hierarchical Clustering (Silhouette: 0.0886)
+4. DBSCAN (Silhouette: -0.0540)
 
 ### Feature Categories
 - **Temporal (7):** Hour, month, quarter, day of week, time period, weekend, season
@@ -192,13 +197,11 @@ Prepared: June 2025
 
 ## 🎯 Next Steps
 
-1. **Run the notebook** to generate visualizations and cluster assignments
-2. **Review the final report** for detailed recommendations
-3. **Present findings** to law enforcement leadership
-4. **Implement short-term actions** (peak hour deployment, resource reallocation)
-5. **Establish monitoring** for cluster changes and outcome tracking
-6. **Plan community interventions** based on cluster characteristics
-7. **Schedule monthly updates** to incorporate new incident data
+1. **Set up the environment** - Create and activate the virtual environment
+2. **Run the analysis** - Execute NYC_Shootings_Cluster_Analysis.py
+3. **Review the outputs** - Check visualizations in the outputs/ directory
+4. **Read the final report** - NYC_Shootings_Cluster_Analysis_Report.md for detailed insights
+5. **Implement recommendations** - Follow the action items in the report
 
 ## ✨ Project Highlights
 
